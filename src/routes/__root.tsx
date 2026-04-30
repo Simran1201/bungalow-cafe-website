@@ -1,9 +1,7 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -45,40 +43,27 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/06e39db6-584a-4ace-9058-2bd870d60bab/id-preview-3b81b376--488f9cb2-64de-4bd0-ad70-ed5e343d90da.lovable.app-1777354074144.png" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <>
+      <HeadContent />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </>
   );
 }
